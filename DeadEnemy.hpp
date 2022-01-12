@@ -6,9 +6,10 @@ class DeadEnemy {
 private:
 	Sprite sprite;
 	Clock clock;
+	IntRect rectSprite;
 
 public:
-	DeadEnemy(float x, float y, Texture* dead1);
+	DeadEnemy(float x, float y, Texture* dead);
 
-	void renderDead(RenderWindow& target, Texture* dead2);
+	void renderDead(RenderWindow& target);
 };

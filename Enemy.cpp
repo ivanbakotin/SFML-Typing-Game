@@ -28,6 +28,9 @@ void Enemy::initSentence(long level) {
 }
 
 void Enemy::initSprite(Texture* textureFake, unsigned x) {
+	this->rectSprite.height = 519;
+	this->rectSprite.width = 430;
+	this->sprite.setTextureRect(rectSprite);
 	this->sprite.setTexture(*textureFake);
 	this->sprite.scale(0.2f, 0.2f);
 	this->sprite.setPosition(
@@ -77,19 +80,21 @@ Sprite Enemy::getShape() {
 	return this->sprite;
 }
 
-void Enemy::animateWalk(Texture* text1, Texture* text2) {
-	if (this->clock.getElapsedTime().asSeconds() > 0.5f && this->clock.getElapsedTime().asSeconds() < 1.0f) {
-		this->sprite.setTexture(*text1);
-	} else if (this->clock.getElapsedTime().asSeconds() < 0.5f) {
-		this->sprite.setTexture(*text2);
-	} else {
+void Enemy::animateWalk() {
+	if (this->clock.getElapsedTime().asSeconds() > 0.1f) {
+		if (this->rectSprite.left == 3870) {
+			this->rectSprite.left = 0;
+		} else {
+			this->rectSprite.left += 430;
+		}
+		sprite.setTextureRect(rectSprite);
 		this->clock.restart();
 	}
 }
 
-void Enemy::moveEnemy(Texture* text1, Texture* text2) {
+void Enemy::moveEnemy() {
 	this->sprite.move(this->moveSpeed, 0.f);
-	animateWalk(text1, text2);
+	animateWalk();
 }
 
 void Enemy::setFocusedEnemy(Color color) {

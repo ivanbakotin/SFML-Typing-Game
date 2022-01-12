@@ -10,12 +10,13 @@ private:
 	Sprite sprite;
 	Clock clock;
 	float moveSpeed;
+	IntRect rectSprite;
 
 	void initText(Font* fontfake);
 	void initSprite(Texture* textureFake, unsigned x);
 	void initSentence(long level);
 
-	void animateWalk(Texture* text1, Texture* text2);
+	void animateWalk();
 
 public:
 	Enemy(unsigned x, long level, Font* fontfake, Texture* textureFake);
@@ -25,7 +26,7 @@ public:
 	bool checkDead();
 	void checkInput(char s);
 
-	void moveEnemy(Texture* text1, Texture* text2);
+	void moveEnemy();
 	void setFocusedEnemy(Color color);
 
 	void renderAlive(RenderTarget& target);

@@ -7,10 +7,8 @@ private:
 	Text uiText;
 
 	Texture backgroundTex;
-	Texture textureWalk1;
-	Texture textureWalk2;
-	Texture textureDead1;
-	Texture textureDead2;
+	Texture textureWalk;
+	Texture textureDead;
 
 	long score;
 	int health;

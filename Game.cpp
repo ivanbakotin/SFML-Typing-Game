@@ -26,10 +26,8 @@ void Game::initText() {
 
 void Game::initTexture() {
     this->backgroundTex.loadFromFile("Textures/Desert.jpg");
-    this->textureWalk1.loadFromFile("Textures/ZombieWalk1.png");
-    this->textureWalk2.loadFromFile("Textures/ZombieWalk2.png");
-    this->textureDead1.loadFromFile("Textures/ZombieDead1.png");
-    this->textureDead2.loadFromFile("Textures/ZombieDead2.png");
+    this->textureWalk.loadFromFile("Textures/ZombieWalk.png");
+    this->textureDead.loadFromFile("Textures/ZombieDead.png");
 }
 
 void Game::initBackground() {
@@ -58,12 +56,12 @@ void Game::setStarted(bool value) {
 }
 
 void Game::spawnEnemy(RenderWindow& target) {
-    Enemy enemyObject(target.getSize().y, this->level, &this->font, &this->textureWalk1);
+    Enemy enemyObject(target.getSize().y, this->level, &this->font, &this->textureWalk);
     this->enemies.push_back(enemyObject);
 }
 
 void Game::spawnDeadEnemy(float x, float y) {
-    DeadEnemy enemyObject(x, y, &this->textureDead1);
+    DeadEnemy enemyObject(x, y, &this->textureDead);
     this->deadEnemies.push_back(enemyObject);
 }
 
@@ -89,7 +87,7 @@ void Game::updateEnemies(RenderWindow& target) {
             continue;
         }
 
-        this->enemies[i].moveEnemy(&this->textureWalk1, &this->textureWalk2);
+        this->enemies[i].moveEnemy();
 
         this->enemies[i].setFocusedEnemy(Color::Black);
         
@@ -122,7 +120,7 @@ void Game::renderDeadEnemies(RenderWindow& target) {
     }
 
     for (auto& enemy : this->deadEnemies) {
-        enemy.renderDead(target, &this->textureDead2);
+        enemy.renderDead(target);
     }
 }
 
